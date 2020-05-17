@@ -3,36 +3,37 @@ import "../styles/App.sass";
 
 function App() {
   return (
-    <div>
-      <h1 className="title">Bulma</h1>
-      <p className="subtitle">
-        Modern CSS framework based on{" "}
-        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox">
-          Flexbox
+    <nav className="navbar" role="navigation" aria-label="main navigation">
+      <div className="navbar-brand">
+        <a
+          role="button"
+          className="navbar-burger burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
         </a>
-      </p>
+      </div>
 
-      <div className="field">
-        <div className="control">
-          <input className="input" type="text" placeholder="Input" />
+      <div id="navbarBasicExample" className="navbar-menu">
+        <div className="navbar-start">
+          <a className="navbar-item has-text-weight-bold is-size-4">
+            Employee Navigator
+          </a>
+          <div className="navbar-item has-dropdown is-hoverable">
+            <a className="navbar-link">More</a>
+
+            <div className="navbar-dropdown">
+              <a className="navbar-item">GitHub</a>
+              <a className="navbar-item">Portfolio</a>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div className="field">
-        <p className="control">
-          <span className="select">
-            <select>
-              <option>Select dropdown</option>
-            </select>
-          </span>
-        </p>
-      </div>
-
-      <div className="buttons">
-        <a className="button is-primary">Primary</a>
-        <a className="button is-link">Link</a>
-      </div>
-    </div>
+    </nav>
   );
 }
 
