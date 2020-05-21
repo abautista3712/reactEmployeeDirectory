@@ -33,6 +33,8 @@ export const Navbar = () => {
         <div className="navbar-start">
           <a
             href="https://github.com/abautista3712/reactEmployeeDirectory"
+            target="_blank"
+            rel="noopener noreferrer"
             className="navbar-item"
           >
             GitHub
@@ -42,6 +44,8 @@ export const Navbar = () => {
             <div className="navbar-dropdown">
               <a
                 href="https://abautista3712.github.io/Portfolio/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="navbar-item"
               >
                 Portfolio
