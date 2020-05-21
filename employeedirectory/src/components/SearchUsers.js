@@ -2,26 +2,21 @@ import React, { useState, useEffect } from "react";
 import API from "../utils/API";
 
 function SearchUsers() {
-  const [picture, setPicture] = useState();
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [phone, setPhone] = useState();
-  const [address, setAddress] = useState();
-  const [city, setCity] = useState();
-  const [state, setState] = useState();
-  const [country, setCountry] = useState();
+  const [employee, setEmployee] = useState({});
 
   useEffect(() => {
     API.getUsers().then((res) => {
       const { picture, name, email, cell, location } = res.data.results[0];
-      setPicture(picture.large);
-      setName(`${name.first} ${name.last}`);
-      setEmail(email);
-      setPhone(cell);
-      setAddress(`${location.street.number} ${location.street.name}`);
-      setCity(location.city);
-      setState(location.state);
-      setCountry(location.country);
+      setEmployee({
+        picture: picture.large,
+        name: `${name.first} ${name.last}`,
+        email: email,
+        phone: cell,
+        address: `${location.street.number} ${location.street.name}`,
+        city: location.city,
+        state: location.state,
+        country: location.country,
+      });
       console.log(res.data.results[0]);
     });
   }, []);
@@ -41,15 +36,15 @@ function SearchUsers() {
         </tr>
         <tr>
           <td>
-            <img src={picture} />
+            <img src={employee.picture} />
           </td>
-          <td>{name}</td>
-          <td>{email}</td>
-          <td>{phone}</td>
-          <td>{address}</td>
-          <td>{city}</td>
-          <td>{state}</td>
-          <td>{country}</td>
+          <td>{employee.name}</td>
+          <td>{employee.email}</td>
+          <td>{employee.phone}</td>
+          <td>{employee.address}</td>
+          <td>{employee.city}</td>
+          <td>{employee.state}</td>
+          <td>{employee.country}</td>
         </tr>
       </thead>
     </table>
