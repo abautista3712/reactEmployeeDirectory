@@ -2,24 +2,15 @@ import React, { useState, useEffect } from "react";
 import API from "../utils/API";
 
 function SearchUsers() {
-  const [employee, setEmployee] = useState({});
+  const [employees, setEmployees] = useState({ results: [] });
 
   useEffect(() => {
     API.getUsers().then((res) => {
-      const { picture, name, email, cell, location } = res.data.results[0];
-      setEmployee({
-        picture: picture.large,
-        name: `${name.first} ${name.last}`,
-        email: email,
-        phone: cell,
-        address: `${location.street.number} ${location.street.name}`,
-        city: location.city,
-        state: location.state,
-        country: location.country,
-      });
-      console.log(res.data.results[0]);
+      setEmployees(res.data);
     });
   }, []);
+
+  console.log(employees.results);
 
   return (
     <table className="table is-hoverable is-fullwidth is-bordered">
@@ -34,18 +25,20 @@ function SearchUsers() {
           <th>State</th>
           <th>Country</th>
         </tr>
-        <tr>
-          <td>
-            <img src={employee.picture} />
-          </td>
-          <td>{employee.name}</td>
-          <td>{employee.email}</td>
-          <td>{employee.phone}</td>
-          <td>{employee.address}</td>
-          <td>{employee.city}</td>
-          <td>{employee.state}</td>
-          <td>{employee.country}</td>
-        </tr>
+        {employees.results.map((employee, index) => (
+          <tr>
+            <td>
+              <img src={employee.picture.medium} />
+            </td>
+            <td>{`${employee.name.first} ${employee.name.last}`}</td>
+            <td>{employee.email}</td>
+            <td>{employee.cell}</td>
+            <td>{`${employee.location.street.number} ${employee.location.street.name}`}</td>
+            <td>{employee.location.city}</td>
+            <td>{employee.location.state}</td>
+            <td>{employee.location.country}</td>
+          </tr>
+        ))}
       </thead>
     </table>
   );
