@@ -9,7 +9,10 @@ export const Navbar = () => {
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
-        <a className="navbar-item has-text-weight-bold is-size-4">
+        <a
+          href="https://morning-ravine-07692.herokuapp.com/"
+          className="navbar-item has-text-weight-bold is-size-4"
+        >
           Employee Navigator
         </a>
         <a
@@ -28,11 +31,21 @@ export const Navbar = () => {
 
       <div id="navbarBasicExample" className="navbar-menu is-active">
         <div className="navbar-start">
-          <a className="navbar-item">GitHub</a>
+          <a
+            href="https://github.com/abautista3712/reactEmployeeDirectory"
+            className="navbar-item"
+          >
+            GitHub
+          </a>
           <div className="navbar-item has-dropdown is-hoverable">
             <a className="navbar-link">More</a>
             <div className="navbar-dropdown">
-              <a className="navbar-item">Portfolio</a>
+              <a
+                href="https://abautista3712.github.io/Portfolio/"
+                className="navbar-item"
+              >
+                Portfolio
+              </a>
             </div>
           </div>
         </div>
