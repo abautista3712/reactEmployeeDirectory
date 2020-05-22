@@ -28,7 +28,7 @@ function SearchUsers() {
         {employees.results.map((employee, index) => (
           <tr>
             <td>
-              <img src={employee.picture.medium} />
+              <img src={employee.picture.medium} alt="Employee Thumbnail" />
             </td>
             <td>{`${employee.name.first} ${employee.name.last}`}</td>
             <td>{employee.email}</td>
