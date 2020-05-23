@@ -3,21 +3,44 @@ import API from "../utils/API";
 
 function SearchUsers() {
   const [employees, setEmployees] = useState({ results: [] });
+  const [currentSort, setCurrentSort] = useState("start");
+
+  function onSortChange() {
+    let nextSort;
+
+    if (currentSort === "down") nextSort = "up";
+    else if (currentSort === "up") nextSort = "start";
+    else if (currentSort === "start") nextSort = "down";
+
+    setCurrentSort(nextSort);
+    console.log(`nextSort is ${nextSort}`);
+  }
 
   useEffect(() => {
-    API.getUsers().then((res) => {
-      setEmployees(res.data);
-    });
+    API.getUsers()
+      .then((res) => {
+        setEmployees(res.data);
+      })
+      .then(onSortChange());
   }, []);
-
-  console.log(employees.results);
 
   return (
     <table className="table is-hoverable is-fullwidth is-bordered">
       <thead>
         <tr>
           <th>Picture</th>
-          <th>Name</th>
+          <th>
+            Name{" "}
+            <button onClick={onSortChange}>
+              <i
+                className={
+                  currentSort === `start`
+                    ? `fas fa-sort`
+                    : `fas fa-sort-alpha-${currentSort}`
+                }
+              />
+            </button>
+          </th>
           <th>E-mail</th>
           <th>Phone Number</th>
           <th>Address</th>
