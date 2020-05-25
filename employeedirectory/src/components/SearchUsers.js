@@ -5,6 +5,24 @@ function SearchUsers() {
   const [employees, setEmployees] = useState({ results: [] });
   const [currentSort, setCurrentSort] = useState("start");
 
+  // const sortTypes = {
+  //   up: {
+  //     class: "sort-up",
+  //     fn: (a,b) =
+  //   }
+  // }
+
+  console.log(
+    employees.results.map((employee, index) => employee.name.first).sort()
+  );
+
+  console.log(
+    employees.results
+      .map((employee, index) => employee.name.first)
+      .sort()
+      .reverse()
+  );
+
   function onSortChange() {
     let nextSort;
 
