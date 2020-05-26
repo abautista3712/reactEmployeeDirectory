@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
 
-function EmployeeSort() {
+const EmployeeSort = () => {
   const [employees, setEmployees] = useState({ results: [] });
 
   const UnsortedData = () => {
@@ -91,5 +91,5 @@ function EmployeeSort() {
   }, []);
 
   return <SortSelection />;
-}
+};
 export default EmployeeSort;
