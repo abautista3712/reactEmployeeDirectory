@@ -1,29 +1,10 @@
 import React, { useState, useEffect } from "react";
-import API from "../utils/API";
+import EmployeeSort from "./EmployeeSort";
 
 function SearchUsers() {
-  const [employees, setEmployees] = useState({ results: [] });
   const [currentSort, setCurrentSort] = useState("start");
 
-  // const sortTypes = {
-  //   up: {
-  //     class: "sort-up",
-  //     fn: (a,b) =
-  //   }
-  // }
-
-  console.log(
-    employees.results.map((employee, index) => employee.name.first).sort()
-  );
-
-  console.log(
-    employees.results
-      .map((employee, index) => employee.name.first)
-      .sort()
-      .reverse()
-  );
-
-  function onSortChange() {
+  function buttonChange() {
     let nextSort;
 
     if (currentSort === "down") nextSort = "up";
@@ -34,54 +15,35 @@ function SearchUsers() {
     console.log(`nextSort is ${nextSort}`);
   }
 
-  useEffect(() => {
-    API.getUsers()
-      .then((res) => {
-        setEmployees(res.data);
-      })
-      .then(onSortChange());
-  }, []);
-
   return (
-    <table className="table is-hoverable is-fullwidth is-bordered">
-      <thead>
-        <tr>
-          <th>Picture</th>
-          <th>
-            Name{" "}
-            <button onClick={onSortChange}>
-              <i
-                className={
-                  currentSort === `start`
-                    ? `fas fa-sort`
-                    : `fas fa-sort-alpha-${currentSort}`
-                }
-              />
-            </button>
-          </th>
-          <th>E-mail</th>
-          <th>Phone Number</th>
-          <th>Address</th>
-          <th>City</th>
-          <th>State</th>
-          <th>Country</th>
-        </tr>
-        {employees.results.map((employee, index) => (
+    <div>
+      <table className="table is-hoverable is-fullwidth is-bordered">
+        <thead>
           <tr>
-            <td>
-              <img src={employee.picture.medium} alt="Employee Thumbnail" />
-            </td>
-            <td>{`${employee.name.first} ${employee.name.last}`}</td>
-            <td>{employee.email}</td>
-            <td>{employee.cell}</td>
-            <td>{`${employee.location.street.number} ${employee.location.street.name}`}</td>
-            <td>{employee.location.city}</td>
-            <td>{employee.location.state}</td>
-            <td>{employee.location.country}</td>
+            <th>Picture</th>
+            <th>
+              Name{" "}
+              <button onClick={buttonChange}>
+                <i
+                  className={
+                    currentSort === `start`
+                      ? `fas fa-sort`
+                      : `fas fa-sort-alpha-${currentSort}`
+                  }
+                />
+              </button>
+            </th>
+            <th>E-mail</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Country</th>
           </tr>
-        ))}
-      </thead>
-    </table>
+          <EmployeeSort />
+        </thead>
+      </table>
+    </div>
   );
 }
 export default SearchUsers;
