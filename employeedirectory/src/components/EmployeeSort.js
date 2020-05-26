@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
 
-function EmployeeData() {
+function EmployeeSort() {
   const [employees, setEmployees] = useState({ results: [] });
 
   const UnsortedData = () => {
@@ -92,4 +92,4 @@ function EmployeeData() {
 
   return <SortSelection />;
 }
-export default EmployeeData;
+export default EmployeeSort;
