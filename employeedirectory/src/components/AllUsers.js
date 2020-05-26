@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import EmployeeSort from "./EmployeeSort";
 
-function SearchUsers() {
+function AllUsers() {
   const [currentSort, setCurrentSort] = useState("start");
 
   function buttonChange() {
@@ -46,4 +46,4 @@ function SearchUsers() {
     </div>
   );
 }
-export default SearchUsers;
+export default AllUsers;
