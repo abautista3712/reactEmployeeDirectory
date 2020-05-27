@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
 import EmployeeSort from "./EmployeeSort";
+import { IconChange } from "./IconChange";
 
 function AllUsers() {
-  const [currentSort, setCurrentSort] = useState("start");
+  // const [currentSort, setCurrentSort] = useState("start");
 
-  function buttonChange() {
-    let nextSort;
+  // function buttonChange() {
+  //   let nextSort;
 
-    if (currentSort === "down") nextSort = "up";
-    else if (currentSort === "up") nextSort = "start";
-    else if (currentSort === "start") nextSort = "down";
+  //   if (currentSort === "down") nextSort = "up";
+  //   else if (currentSort === "up") nextSort = "start";
+  //   else if (currentSort === "start") nextSort = "down";
 
-    setCurrentSort(nextSort);
-    console.log(`nextSort is ${nextSort}`);
-  }
+  //   setCurrentSort(nextSort);
+  //   console.log(`nextSort is ${nextSort}`);
+  // }
 
   return (
     <div>
@@ -22,16 +23,7 @@ function AllUsers() {
           <tr>
             <th>Picture</th>
             <th>
-              Name{" "}
-              <button onClick={buttonChange}>
-                <i
-                  className={
-                    currentSort === `start`
-                      ? `fas fa-sort`
-                      : `fas fa-sort-alpha-${currentSort}`
-                  }
-                />
-              </button>
+              Name <IconChange />
             </th>
             <th>E-mail</th>
             <th>Phone Number</th>
