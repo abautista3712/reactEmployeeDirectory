@@ -1,13 +1,13 @@
 import React from "react";
 import "./styles/App.sass";
 import { Navbar } from "./components/Navbar";
-import SearchUsers from "./components/SearchUsers";
+import AllUsers from "./components/AllUsers";
 
 function App() {
   return (
     <div>
       <Navbar />
-      <SearchUsers />
+      <AllUsers />
     </div>
   );
 }
