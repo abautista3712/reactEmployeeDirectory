@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from "react";
-import API from "../utils/API";
+import React from "react";
+import useAPI from "./useAPI";
 
 export const UnsortedData = () => {
-  const [employees, setEmployees] = useState({ results: [] });
+  const employees = useAPI();
 
-  useEffect(() => {
-    API.getUsers().then((res) => {
-      setEmployees(res.data);
-    });
-  }, []);
-
-  return employees.results.map((employee, index) => (
+  return employees.results.map((employee) => (
     <tr>
       <td>
         <img src={employee.picture.medium} alt="Employee Thumbnail" />

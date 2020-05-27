@@ -1,14 +1,8 @@
-import React, { useState, useEffect } from "react";
-import API from "../utils/API";
+import React from "react";
+import useAPI from "./useAPI";
 
 export const AlphabeticalSort = () => {
-  const [employees, setEmployees] = useState({ results: [] });
-
-  useEffect(() => {
-    API.getUsers().then((res) => {
-      setEmployees(res.data);
-    });
-  }, []);
+  const employees = useAPI();
 
   return employees.results
     .sort((a, b) => {
@@ -22,7 +16,7 @@ export const AlphabeticalSort = () => {
       }
       return 0;
     })
-    .map((employee, index) => (
+    .map((employee) => (
       <tr>
         <td>
           <img src={employee.picture.medium} alt="Employee Thumbnail" />

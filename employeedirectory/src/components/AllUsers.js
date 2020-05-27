@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-// import { IconChange } from "./IconChange";
+// import API from "../utils/API";
 import { UnsortedData } from "./UnsortedData";
 import { AlphabeticalSort } from "./AlphabeticalSort";
 import { ReverseSort } from "./ReverseSort";
 
-function AllUsers() {
+export const AllUsers = () => {
+  // const [employees, setEmployees] = useState({ results: [] });
   const [currentIcon, setCurrentIcon] = useState("down");
+  // const [currentSort, setCurrentSort] = useState(<UnsortedData />);
 
   const handleIconChange = () => {
     let nextIcon;
@@ -19,14 +21,28 @@ function AllUsers() {
   };
 
   const handleSort = () => {
-    return <UnsortedData />;
+    let setSort;
+
+    if (currentIcon === "down") {
+      setSort = <UnsortedData />;
+    } else if (currentIcon === "up") {
+      setSort = <AlphabeticalSort />;
+    } else if (currentIcon === "start") {
+      setSort = <ReverseSort />;
+    }
+    return setSort;
   };
 
-  useEffect(() => {
-    console.log(`currentIcon is ${currentIcon}`);
-  }, []);
+  // useEffect(() => {
+  //   API.getUsers().then((res) => {
+  //     setEmployees(res.data);
+  //   });
+  //   // handleSort();
+  //   console.log(`currentIcon is ${currentIcon}`);
+  // }, []);
 
   return (
+    // currentIcon,
     <div>
       <table className="table is-hoverable is-fullwidth is-bordered">
         <thead>
@@ -53,10 +69,10 @@ function AllUsers() {
             <th>State</th>
             <th>Country</th>
           </tr>
-          <UnsortedData />
+          {/* <UnsortedData /> */}
+          {handleSort()}
         </thead>
       </table>
     </div>
   );
-}
-export default AllUsers;
+};

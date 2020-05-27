@@ -1,15 +1,8 @@
-import React, { useState, useEffect } from "react";
-import API from "../utils/API";
+import React from "react";
+import useAPI from "./useAPI";
 
 export const ReverseSort = () => {
-  const [employees, setEmployees] = useState({ results: [] });
-
-  useEffect(() => {
-    API.getUsers().then((res) => {
-      setEmployees(res.data);
-    });
-  }, []);
-
+  const employees = useAPI();
   return employees.results
     .sort((a, b) => {
       let nameA = a.name.first;
