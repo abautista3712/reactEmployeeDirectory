@@ -1,11 +1,31 @@
 import React, { useState, useEffect } from "react";
-// import EmployeeSort from "./EmployeeSort";
-import { IconChange } from "./IconChange";
+// import { IconChange } from "./IconChange";
 import { UnsortedData } from "./UnsortedData";
 import { AlphabeticalSort } from "./AlphabeticalSort";
 import { ReverseSort } from "./ReverseSort";
 
 function AllUsers() {
+  const [currentIcon, setCurrentIcon] = useState("down");
+
+  const handleIconChange = () => {
+    let nextIcon;
+
+    if (currentIcon === "down") nextIcon = "up";
+    else if (currentIcon === "up") nextIcon = "start";
+    else if (currentIcon === "start") nextIcon = "down";
+
+    setCurrentIcon(nextIcon);
+    console.log(`currentIcon is now ${nextIcon}`);
+  };
+
+  const handleSort = () => {
+    return <UnsortedData />;
+  };
+
+  useEffect(() => {
+    console.log(`currentIcon is ${currentIcon}`);
+  }, []);
+
   return (
     <div>
       <table className="table is-hoverable is-fullwidth is-bordered">
@@ -13,7 +33,18 @@ function AllUsers() {
           <tr>
             <th>Picture</th>
             <th>
-              Name <IconChange />
+              Name{" "}
+              <div>
+                <button onClick={handleIconChange}>
+                  <i
+                    className={
+                      currentIcon === `start`
+                        ? `fas fa-sort`
+                        : `fas fa-sort-alpha-${currentIcon}`
+                    }
+                  />
+                </button>
+              </div>
             </th>
             <th>E-mail</th>
             <th>Phone Number</th>
@@ -22,7 +53,7 @@ function AllUsers() {
             <th>State</th>
             <th>Country</th>
           </tr>
-          <ReverseSort />
+          <UnsortedData />
         </thead>
       </table>
     </div>
